@@ -79,7 +79,7 @@ module.exports = function(
   appName,
   verbose,
   originalDirectory,
-  template
+  template,
 ) {
   const ownPackageName = require(path.join(__dirname, '..', 'package.json'))
     .name;
@@ -100,16 +100,22 @@ module.exports = function(
 
   appPackage.browserslist = defaultBrowsers;
 
+  appPackage.prettier = {
+    parser: 'flow',
+    singleQuote: true,
+    trailingComma: 'all',
+  };
+
   fs.writeFileSync(
     path.join(appPath, 'package.json'),
-    JSON.stringify(appPackage, null, 2) + os.EOL
+    JSON.stringify(appPackage, null, 2) + os.EOL,
   );
 
   const readmeExists = fs.existsSync(path.join(appPath, 'README.md'));
   if (readmeExists) {
     fs.renameSync(
       path.join(appPath, 'README.md'),
-      path.join(appPath, 'README.old.md')
+      path.join(appPath, 'README.old.md'),
     );
   }
 
@@ -121,7 +127,7 @@ module.exports = function(
     fs.copySync(templatePath, appPath);
   } else {
     console.error(
-      `Could not locate supplied template: ${chalk.green(templatePath)}`
+      `Could not locate supplied template: ${chalk.green(templatePath)}`,
     );
     return;
   }
@@ -132,7 +138,7 @@ module.exports = function(
     fs.moveSync(
       path.join(appPath, 'gitignore'),
       path.join(appPath, '.gitignore'),
-      []
+      [],
     );
   } catch (err) {
     // Append if there's already a `.gitignore` file there
@@ -160,14 +166,14 @@ module.exports = function(
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
     appPath,
-    '.template.dependencies.json'
+    '.template.dependencies.json',
   );
   if (fs.existsSync(templateDependenciesPath)) {
     const templateDependencies = require(templateDependenciesPath).dependencies;
     args = args.concat(
       Object.keys(templateDependencies).map(key => {
         return `${key}@${templateDependencies[key]}`;
-      })
+      }),
     );
     fs.unlinkSync(templateDependenciesPath);
   }
@@ -212,7 +218,7 @@ module.exports = function(
   console.log('    Starts the development server.');
   console.log();
   console.log(
-    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}build`)
+    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}build`),
   );
   console.log('    Bundles the app into static files for production.');
   console.log();
@@ -220,13 +226,13 @@ module.exports = function(
   console.log('    Starts the test runner.');
   console.log();
   console.log(
-    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}eject`)
+    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}eject`),
   );
   console.log(
-    '    Removes this tool and copies build dependencies, configuration files'
+    '    Removes this tool and copies build dependencies, configuration files',
   );
   console.log(
-    '    and scripts into the app directory. If you do this, you can’t go back!'
+    '    and scripts into the app directory. If you do this, you can’t go back!',
   );
   console.log();
   console.log('We suggest that you begin by typing:');
@@ -237,8 +243,8 @@ module.exports = function(
     console.log();
     console.log(
       chalk.yellow(
-        'You had a `README.md` file, we renamed it to `README.old.md`'
-      )
+        'You had a `README.md` file, we renamed it to `README.old.md`',
+      ),
     );
   }
   console.log();

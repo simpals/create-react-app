@@ -123,7 +123,7 @@ module.exports = {
     // https://github.com/facebook/create-react-app/issues/253
     modules: ['node_modules'].concat(
       // It is guaranteed to exist because we tweak it in `env.js`
-      process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
+      process.env.NODE_PATH.split(path.delimiter).filter(Boolean),
     ),
     // These are the reasonable defaults supported by the Node ecosystem.
     // We also include JSX as a common component filename extension to support
@@ -139,7 +139,7 @@ module.exports = {
       // unfortunate to rely on, as react-scripts could be symlinked,
       // and thus @babel/runtime might not be resolvable from the source.
       '@babel/runtime': path.dirname(
-        require.resolve('@babel/runtime/package.json')
+        require.resolve('@babel/runtime/package.json'),
       ),
       // @remove-on-eject-end
       // Support React Native Web
@@ -172,7 +172,10 @@ module.exports = {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
               baseConfig: {
-                extends: [require.resolve('eslint-config-react-app')],
+                extends: [
+                  require.resolve('eslint-config-react-app'),
+                  require.resolve('eslint-plugin-prettier'),
+                ],
               },
               // @remove-on-eject-begin
               ignore: false,
@@ -304,7 +307,7 @@ module.exports = {
                 modules: true,
                 getLocalIdent: getCSSModuleLocalIdent,
               },
-              'sass-loader'
+              'sass-loader',
             ),
           },
           // The GraphQL loader preprocesses GraphQL queries in .graphql files.
