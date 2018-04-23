@@ -1,14 +1,14 @@
 {
-  "name": "react-scripts",
-  "version": "1.1.0",
+  "name": "simpals-react-scripts",
+  "version": "0.0.1",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "facebook/create-react-app",
+  "repository": "simpals/simpals-react-scripts",
   "license": "MIT",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/facebook/create-react-app/issues"
+    "url": "https://github.com/simpals/simpals-react-scripts/issues"
   },
   "files": [
     "bin",
