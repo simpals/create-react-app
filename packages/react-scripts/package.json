@@ -1,7 +1,7 @@
 {
-  "name": "simpals-react-scripts",
-  "version": "0.0.2",
-  "description": "Configuration and scripts for Create React App.",
+  "name": "@simpals/simpals-react-scripts",
+  "version": "0.0.4",
+  "description": "Simpals configuration and scripts for Create React App.",
   "repository": "simpals/simpals-react-scripts",
   "license": "MIT",
   "engines": {
